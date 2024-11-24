@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import EncButton from "./components/common/EncryptButton";
 import Lottie from "lottie-react";
-import animationData from '../../public/animations/animation.json';
+import animationData from "/animations/animation.json";
 
 export default function Home() {
   const backgroundRef = useRef(null);

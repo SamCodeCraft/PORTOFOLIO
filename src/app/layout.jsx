@@ -6,16 +6,24 @@ import Navbar from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
 const geistSans = localFont({
-  src: '/fonts/GeistVF.woff', 
+  src: './fonts/GeistVF.woff2',  
   variable: '--font-geist-sans',
   weight: '100 900',
 });
 
 const geistMono = localFont({
-  src: '/fonts/GeistMonoVF.woff', 
+  src: './fonts/GeistMonoVF.woff2',  
   variable: '--font-geist-mono',
   weight: '100 900',
 });
+
+
+// Log the font path for debugging
+console.log("GeistSans class name:", geistSans.className);
+console.log("GeistMono class name:", geistMono.className);
+
+
+
 
 export const metadata = {
   title: "Samuel Siyajari | Portfolio",

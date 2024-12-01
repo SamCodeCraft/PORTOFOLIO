@@ -5,7 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import EncButton from "./components/common/EncryptButton";
 import Lottie from "lottie-react";
-import animationData from "/animations/animation.json";
+import animationData from './animations/animation.json';
+
 
 export default function Home() {
   const backgroundRef = useRef(null);
@@ -111,7 +112,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Hi, I&apos;m <span className="text-indigo-500">Brian Omondi</span>
+            Hi, I&apos;m <span className="text-indigo-500">Samuel Siyajari</span>
           </motion.h1>
 
           <motion.p

@@ -6,17 +6,18 @@
 /* Import Fonts */
 @font-face {
   font-family: 'GeistMono';
-  src: url('/fonts/GeistMonoVF.woff2') format('woff2');
+  src: url('/src/app/fonts/GeistMonoVF.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'GeistSans';
-  src: url('/fonts/GeistVF.woff2') format('woff2');
+  src: url('/src/app/fonts/GeistVF.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
+
 
 /* Apply the fonts globally */
 html, body {

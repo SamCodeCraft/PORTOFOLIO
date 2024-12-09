@@ -16,18 +16,18 @@ const projects = [
     title: "MyDuka Inentory Management System Project",
     description:
       "This Flask API is built to support the MyDuka inventory management system, offering endpoints for managing stock, generating reports, and handling user roles. Admins, merchants, and staff can efficiently interact with the platform, utilizing their respective access levels to perform tasks such as adding products, tracking inventory, and generating sales reports.",
-    imageUrl: //"/images/LMS.png",
-    link: //"https://learning-management-system-alpha-eosin.vercel.app/docs/",
+    imageUrl: "/images/MyDuka.png",
+    link:"https://samcodecraft.github.io/MydukaApp-client/",
     tech_stack: "Flask, Python, PostgreSQL, SQLAlchemy"
   },
-  {
-    title: "Medical Billing System",
-    description:
-      "The medical billing system you're building is designed to streamline the billing process for healthcare providers. It aims to automate and manage patient billing, insurance claims, and payment processing. The system will support features such as generating invoices, tracking payments, managing patient accounts, and integrating with insurance companies for claims verification. It is built to improve efficiency, reduce errors, and ensure accurate billing, making it easier for healthcare professionals to focus on patient care.",
-    imageUrl: //"/images/RetailApp.png",
-    link: //"https://retail-app-kappa.vercel.app/",
-    tech_stack: //"React.js, Spring Boot"
-  },
+  // {
+  //   title: "Medical Billing System",
+  //   description:
+  //     "The medical billing system you're building is designed to streamline the billing process for healthcare providers. It aims to automate and manage patient billing, insurance claims, and payment processing. The system will support features such as generating invoices, tracking payments, managing patient accounts, and integrating with insurance companies for claims verification. It is built to improve efficiency, reduce errors, and ensure accurate billing, making it easier for healthcare professionals to focus on patient care.",
+  //   imageUrl: "/images/RetailApp.png",
+  //   link: "https://retail-app-kappa.vercel.app/",
+  //   tech_stack: "React.js, Spring Boot"
+  // },
 
 ];
 

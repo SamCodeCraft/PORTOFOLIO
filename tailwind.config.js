@@ -7,6 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        'custom-pulse': 'custom-pulse 4.5s infinite',
+      },
+      keyframes: {
+        'custom-pulse': {
+          '0%': { opacity: '1' },
+          '50%': { opacity: '0.6' },
+          '100%': { opacity: '1' },
+        },
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

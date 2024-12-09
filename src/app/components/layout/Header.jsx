@@ -4,7 +4,6 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { FaHome, FaUser, FaFolder, FaEnvelope, FaCode } from "react-icons/fa";
 import Link from "next/link";
-import Image from "next/image";
 
 const navItems = [
   { label: "Home", href: "/", icon: <FaHome /> },
@@ -13,8 +12,6 @@ const navItems = [
   { label: "Contact", href: "/contact", icon: <FaEnvelope /> },
   { label: "Interests", href: "/interests", icon: <FaFolder /> },
   { label: "Learning", href: "/learning", icon: <FaFolder /> },
-  
-
 ];
 
 export default function Navbar() {
@@ -36,15 +33,11 @@ export default function Navbar() {
     hidden: { opacity: 0, x: -10, scale: 0.8 },
     visible: { opacity: 1, x: 0, scale: 1 },
   };
+
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-gray-900 shadow-lg">
       <div className="container mx-auto px-6 py-2 flex justify-between items-center">
-        <Link
-          href="/"
-          className="text-2xl font-bold text-white hover:text-gray-300"
-        >
-          <Image src="/images/officialLogo.png" alt="logo" width={70} height={70}/>
-        </Link>
+        
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -77,37 +70,36 @@ export default function Navbar() {
         </div>
         <SlideTabs />
         {isOpen && (
-  <>
-    {/* Overlay to darken the background */}
-    <div 
-      className="fixed inset-0 bg-black bg-opacity-50 z-40" 
-      onClick={() => setIsOpen(false)} // Close the menu when clicking outside
-    ></div>
-    
-    <nav className="absolute top-16 left-0 w-full bg-gray-900 md:hidden shadow-lg z-50 rounded-lg">
-      <motion.ul
-        className="flex flex-col p-4 space-y-3"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {navItems.map((item, index) => (
-          <motion.li key={index} variants={itemVariants}>
-            <Link
-              href={item.href}
-              className="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white transition p-3 rounded-lg duration-200 ease-in-out"
-              onClick={() => setIsOpen(false)}
-            >
-              <span className="mr-4 text-2xl text-gray-300">{item.icon}</span>
-              <span className="font-semibold text-lg">{item.label}</span>
-            </Link>
-          </motion.li>
-        ))}
-      </motion.ul>
-    </nav>
-  </>
-)}
+          <>
+            {/* Overlay to darken the background */}
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setIsOpen(false)} // Close the menu when clicking outside
+            ></div>
 
+            <nav className="absolute top-16 left-0 w-full bg-gray-900 md:hidden shadow-lg z-50 rounded-lg">
+              <motion.ul
+                className="flex flex-col p-4 space-y-3"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {navItems.map((item, index) => (
+                  <motion.li key={index} variants={itemVariants}>
+                    <Link
+                      href={item.href}
+                      className="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white transition p-3 rounded-lg duration-200 ease-in-out"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span className="mr-4 text-2xl text-gray-300">{item.icon}</span>
+                      <span className="font-semibold text-lg">{item.label}</span>
+                    </Link>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </nav>
+          </>
+        )}
       </div>
     </header>
   );

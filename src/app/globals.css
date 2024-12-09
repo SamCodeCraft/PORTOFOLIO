@@ -1,46 +1,29 @@
-/* Tailwind Base, Components, Utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Import Fonts */
-@font-face {
-  font-family: 'GeistMono';
-  src: url('/src/app/fonts/GeistMonoVF.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'GeistSans';
-  src: url('/src/app/fonts/GeistVF.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-/* Apply the fonts globally */
-html, body {
-  font-family: 'GeistSans', sans-serif; /* Default font */
-  overflow-x: hidden;
-}
-
-/* Reduced Motion Settings */
 @media (prefers-reduced-motion: reduce) {
   .animate-pulse {
     animation: none;
   }
 }
 
-/* Custom Animations */
+html, body {
+  overflow-x: hidden;
+}
+
+
 @keyframes custom-pulse {
   0% {
+   
     opacity: 1;
   }
   50% {
+    
     opacity: 0.6;
   }
   100% {
+ 
     opacity: 1;
   }
 }

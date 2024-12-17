@@ -7,8 +7,8 @@ const projects = [
     title: "PesaBank: Banking App Website Project",
     description:
       "PesaBank is a full-stack banking application built with React and Flask, offering users a secure platform to manage their finances. Key features include account creation, fund transfers, transaction tracking, loan applications, and savings management. With two-step authentication and SQLAlchemy-powered database management, PesaBank ensures both security and performance. Its intuitive dashboard and responsive design provide a seamless user experience for personal finance management",
-    imageUrl: //"/images/TechVoyageCompany.png",
-    link: //"https://techvoyage.co.ke",
+    imageUrl: "/images/PesaBank.png",
+   // link: "https://techvoyage.co.ke",
     tech_stack: "React.js, Flask, SQLAlchemy, PostgreSQL"
  
   },

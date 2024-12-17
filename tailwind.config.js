@@ -17,6 +17,10 @@ module.exports = {
           '100%': { opacity: '1' },
         },
       },
+      fontFamily: {
+        geist: ['GeistSans', 'sans-serif'],
+        geistMono: ['GeistMono', 'monospace'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

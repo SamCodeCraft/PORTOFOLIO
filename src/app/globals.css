@@ -3,6 +3,7 @@
   src: url('/fonts/GeistVF.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap; /* Improve performance and accessibility */
 }
 
 @font-face {
@@ -10,40 +11,44 @@
   src: url('/fonts/GeistMonoVF.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap; /* Improve performance and accessibility */
 }
-
-
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Improved reduced motion handling */
 @media (prefers-reduced-motion: reduce) {
-  .animate-pulse {
-    animation: none;
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-pulse,
+  .animate-custom-pulse {
+    animation: none !important;
   }
 }
 
-html, body {
+/* Improved body and html styles */
+html, 
+body {
   overflow-x: hidden;
+  scroll-behavior: smooth; /* Optional: adds smooth scrolling */
 }
 
-
+/* More robust and flexible custom pulse animation */
 @keyframes custom-pulse {
-  0% {
-   
+  0%, 100% {
     opacity: 1;
   }
   50% {
-    
     opacity: 0.6;
-  }
-  100% {
- 
-    opacity: 1;
   }
 }
 
 .animate-custom-pulse {
-  animation: custom-pulse 4.5s infinite; /* Adjust the duration as needed */
+  animation: custom-pulse 4.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

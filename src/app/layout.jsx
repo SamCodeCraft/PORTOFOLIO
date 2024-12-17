@@ -18,7 +18,7 @@ export const metadata = {
   openGraph: {
     title: "Samuel Siyajari | Portfolio",
     description: "Explore my projects and skills as a Full Stack Software Developer.",
-    url: "http://your-portfolio-url.com", // Replace with your actual URL
+    url: "https://github.com/SamCodeCraft/PORTOFOLIO", // Replace with your actual URL
     type: "website",
   },
   link: [

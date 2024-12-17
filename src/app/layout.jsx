@@ -5,17 +5,18 @@ import './globals.css';
 import Navbar from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff2',  
+export const geistMono = localFont({
+  src: '/fonts/GeistMonoVF.woff2', // Path to public folder
+  variable: '--font-geist-mono',
+  weight: '100 900',
+});
+
+export const geistSans = localFont({
+  src: '/fonts/GeistVF.woff2', // Path to public folder
   variable: '--font-geist-sans',
   weight: '100 900',
 });
 
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff2',  
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
 
 
 // Log the font path for debugging

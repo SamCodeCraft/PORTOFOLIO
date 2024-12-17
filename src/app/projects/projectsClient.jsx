@@ -34,29 +34,29 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="min-h-screen py-20 bg-gray-900 text-white">
-      <div className="container mx-auto px-4 md:px-8">
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
+    <section className="min-h-[70vh] py-12 bg-gray-900 text-white">
+  <div className="container mx-auto px-4 md:px-8">
+    <motion.h1
+      className="text-3xl md:text-4xl font-bold text-center mb-8"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      My Projects
+    </motion.h1>
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {projects.map((project, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ delay: index * 0.2, type: "spring", stiffness: 200 }}
         >
-          My Projects
-        </motion.h1>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2,type:"spring", stiffness:"200" }}
-            >
-              <ProjectCard {...project} />
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+          <ProjectCard {...project} />
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
   );
 }

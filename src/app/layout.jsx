@@ -1,3 +1,4 @@
+import React from 'react';
 import StoreProvider from './StoreProvider';
 import LenisWrapper from './components/layout/lennisWrapper';
 import './globals.css';
@@ -43,3 +44,7 @@ export default function RootLayout({ children }) {
     </StoreProvider>
   );
 }
+// Add propTypes validation for 'children'
+LenisWrapper.propTypes = {
+  children: PropTypes.node.isRequired, // children can be any renderable node (string, number, element, etc.)
+};

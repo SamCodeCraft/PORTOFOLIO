@@ -1,7 +1,8 @@
 'use client'
+import React, { useRef } from 'react'
 import { Provider } from 'react-redux'
-import { makeStore } from './redux/store' 
-import { useRef } from 'react'
+import { makeStore } from './redux/store'
+import PropTypes from 'prop-types'
 
 export default function StoreProvider({ children }) {
   const storeRef = useRef()
@@ -11,4 +12,9 @@ export default function StoreProvider({ children }) {
   }
 
   return <Provider store={storeRef.current}>{children}</Provider>
+}
+
+// Prop types validation
+StoreProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 }

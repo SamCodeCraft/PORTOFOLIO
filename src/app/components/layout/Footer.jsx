@@ -1,5 +1,6 @@
-"use client"
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+"use client";
+import React from 'react';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';  // Added FaTwitter
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -17,6 +18,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-indigo-500 transition"
+          aria-label="Visit my GitHub profile"
         >
           <FaGithub className="w-8 h-8" />
         </a>
@@ -25,18 +27,20 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-indigo-500 transition"
+          aria-label="Visit my LinkedIn profile"
         >
           <FaLinkedin className="w-8 h-8" />
         </a>
-        {/* <a
-          href="https://x.com/SamuelSiyajari?t=cpd9ZhEJxI3JSb2NfD5CnA"
+        
+        <a
+          href="https://x.com/EchoMystere"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-indigo-500 transition"
+          aria-label="Visit my Twitter profile"
         >
           <FaTwitter className="w-8 h-8" />
-        </a> */}
-      
+        </a>
       </motion.div>
 
       {/* Copyright Section */}

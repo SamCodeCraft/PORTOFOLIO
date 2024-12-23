@@ -68,9 +68,9 @@ export default function HorizontalNavbar() {
               key={index} 
               onClick={() => handleNavigation(item.href)}
               className="flex items-center justify-center 
-                         bg-gray-700 text-white 
+                         bg-blue-500 text-white 
                          px-4 py-2 rounded-lg 
-                         hover:bg-gray-600 
+                         hover:bg-blue-400 
                          transition duration-300 
                          ease-in-out 
                          transform hover:scale-105 

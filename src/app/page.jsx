@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import Link from "next/link";
@@ -121,10 +122,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            "As a full-stack developer, I blend creativity with technical expertise to craft polished, 
-            high-performing applications. 
-            I'm eager to collaborate and transform innovative ideas into exceptional digital solutions."
+            &quot;As a full-stack developer, I blend creativity with technical expertise to craft polished, high-performing applications. I&apos;m eager to collaborate and transform innovative ideas into exceptional digital solutions.&quot;
           </motion.p>
+
 
           {/* Call to Action Buttons */}
           <motion.div

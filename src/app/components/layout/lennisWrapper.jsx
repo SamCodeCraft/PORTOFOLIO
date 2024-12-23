@@ -1,10 +1,10 @@
 "use client"; 
+import React from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 import { ReactLenis } from "@studio-freight/react-lenis";
-
 
 export default function LenisWrapper({ children }) {
 
-    
   return (
     <ReactLenis
       root
@@ -13,10 +13,14 @@ export default function LenisWrapper({ children }) {
         syncTouch: true,
       }}
     >
-        <div>
-      {children}
+      <div>
+        {children}
       </div>
-     
     </ReactLenis>
   );
 }
+
+// Add propTypes validation for 'children'
+LenisWrapper.propTypes = {
+  children: PropTypes.node.isRequired, // children can be any renderable node (string, number, element, etc.)
+};

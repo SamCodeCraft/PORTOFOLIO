@@ -1,5 +1,5 @@
 "use client";
-
+import React from "react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FiMail, FiUser, FiMessageSquare } from "react-icons/fi";
@@ -69,7 +69,7 @@ export default function Contact() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            Many thanks for your note - I'll be in touch soon.
+            Many thanks for your note - I&apos;ll be in touch soon.
           </motion.div>
         ) : (
           <motion.form

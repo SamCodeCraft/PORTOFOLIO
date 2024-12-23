@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes for validation
 import StoreProvider from './StoreProvider';
 import LenisWrapper from './components/layout/lennisWrapper';
 import './globals.css';
@@ -8,7 +9,6 @@ import Footer from './components/layout/Footer';
 // Define the fonts to use from Google Fonts CDN
 const geistMonoLink = "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100;900&display=swap";
 const geistSansLink = "https://fonts.googleapis.com/css2?family=Geist+Sans:wght@100;900&display=swap";
-
 
 // Use the Metadata API for title, description, and links
 export const metadata = {
@@ -28,7 +28,7 @@ export const metadata = {
   ],
 };
 
-export default function RootLayout({ children }) {
+function RootLayout({ children }) {
   return (
     <StoreProvider>
       <html lang="en">
@@ -44,7 +44,10 @@ export default function RootLayout({ children }) {
     </StoreProvider>
   );
 }
-// Add propTypes validation for 'children'
-LenisWrapper.propTypes = {
-  children: PropTypes.node.isRequired, // children can be any renderable node (string, number, element, etc.)
+
+// Adding PropTypes validation for 'children'
+RootLayout.propTypes = {
+  children: PropTypes.node.isRequired, // 'children' should be a React node
 };
+
+export default RootLayout;

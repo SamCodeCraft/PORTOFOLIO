@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import { motion } from "framer-motion";
+'use client';
+import React from 'react';
+import { motion } from 'framer-motion';
 import {
   SiJavascript,
   SiReact,
@@ -10,54 +10,54 @@ import {
   SiDjango,
   SiFlask,
   SiFirebase,
-} from "react-icons/si";
-import { FaServer } from "react-icons/fa";
+} from 'react-icons/si';
+import { FaServer } from 'react-icons/fa';
 
 const skills = [
   {
-    name: "JavaScript",
+    name: 'JavaScript',
     icon: <SiJavascript className="text-yellow-400 text-4xl" />,
-    gradient: "from-yellow-500 to-yellow-700",
+    gradient: 'from-yellow-500 to-yellow-700',
   },
   { 
-    name: "React", 
+    name: 'React', 
     icon: <SiReact className="text-blue-500 text-4xl" />,
-    gradient: "from-blue-500 to-blue-700",
+    gradient: 'from-blue-500 to-blue-700',
   },
   { 
-    name: "Next.js", 
+    name: 'Next.js', 
     icon: <SiNextdotjs className="text-gray-200 text-4xl" />,
-    gradient: "from-gray-200 to-gray-400",
+    gradient: 'from-gray-200 to-gray-400',
   },
   {
-    name: "Node.js",
+    name: 'Node.js',
     icon: <SiNodedotjs className="text-green-500 text-4xl" />,
-    gradient: "from-green-500 to-green-700",
+    gradient: 'from-green-500 to-green-700',
   },
   {
-    name: "Express.js",
+    name: 'Express.js',
     icon: <FaServer className="text-gray-300 text-4xl" />,
-    gradient: "from-gray-300 to-gray-500",
+    gradient: 'from-gray-300 to-gray-500',
   },
   { 
-    name: "Python", 
+    name: 'Python', 
     icon: <SiPython className="text-blue-400 text-4xl" />,
-    gradient: "from-blue-400 to-blue-600",
+    gradient: 'from-blue-400 to-blue-600',
   },
   { 
-    name: "Django", 
+    name: 'Django', 
     icon: <SiDjango className="text-green-400 text-4xl" />,
-    gradient: "from-green-400 to-green-600",
+    gradient: 'from-green-400 to-green-600',
   },
   { 
-    name: "Flask", 
+    name: 'Flask', 
     icon: <SiFlask className="text-gray-500 text-4xl" />,
-    gradient: "from-gray-500 to-gray-700",
+    gradient: 'from-gray-500 to-gray-700',
   },
   { 
-    name: "Firebase", 
+    name: 'Firebase', 
     icon: <SiFirebase className="text-yellow-500 text-4xl" />,
-    gradient: "from-yellow-500 to-yellow-700",
+    gradient: 'from-yellow-500 to-yellow-700',
   },
 ];
 
@@ -98,9 +98,9 @@ export default function About() {
             
               As a passionate coder who thrives on creativity, I find my perfect
               flow state with a steaming cup of black coffee by my side. When
-              I'm not immersed in lines of code or diving into articles about
-              emerging technologies, you'll likely find me on the road – whether
-              I'm behind the wheel or riding out, I cherish exploring
+              I&apos;m not immersed in lines of code or diving into articles about
+              emerging technologies, you&apos;ll likely find me on the road – whether
+              I&apos;m behind the wheel or riding out, I cherish exploring
               undiscovered destinations. This mix of focused coding sessions,
               staying current with tech trends, and adventurous journeys fuels
               my creative spirit and keeps me inspired.
@@ -144,7 +144,7 @@ export default function About() {
                              border border-white/10`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: 'spring', stiffness: 300 }}
               >
                 {skill.icon}
                 <span className="mt-3 text-sm font-medium tracking-wide">{skill.name}</span>

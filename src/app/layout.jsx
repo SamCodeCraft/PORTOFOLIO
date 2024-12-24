@@ -1,10 +1,31 @@
 import React from 'react';
+import { useEffect } from "react";
 import PropTypes from 'prop-types'; // Import PropTypes for validation
 import StoreProvider from './StoreProvider';
 import LenisWrapper from './components/layout/lennisWrapper';
 import './globals.css';
 import Navbar from './components/layout/Header';
 import Footer from './components/layout/Footer';
+
+const Layout = ({ children }) => {
+  useEffect(() => {
+    const handleResize = () => {
+      console.log("Window resized!");
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      // Cleanup
+      window.removeEventListener("resize", handleResize);
+      console.log("Resize listener removed");
+    };
+  }, []);
+
+  return <div>{children}</div>;
+};
+
+
 
 // Define the fonts to use from Google Fonts CDN
 const geistMonoLink = "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100;900&display=swap";
@@ -50,4 +71,4 @@ RootLayout.propTypes = {
   children: PropTypes.node.isRequired, // 'children' should be a React node
 };
 
-export default RootLayout;
+export default Layout;

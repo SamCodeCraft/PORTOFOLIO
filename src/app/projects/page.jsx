@@ -1,3 +1,6 @@
+// Add the "use client" directive at the top of the file
+'use client';
+
 import React, { useEffect } from 'react';
 import Projects from './projectsClient';
 

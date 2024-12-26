@@ -1,18 +1,17 @@
-"use client";
+'use client'; // <-- Add this directive to mark this as a client-side component
+
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import EncButton from "./components/common/EncryptButton";
-import Lottie from "lottie-react";
-import animationData from './animations/animation.json';
 
 export default function Home() {
   const backgroundRef = useRef(null);
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
-    if (isMobile) return;
+    if (isMobile) return; // Skip Three.js rendering on mobile
 
     let renderer, scene, camera, particles;
 
@@ -62,21 +61,19 @@ export default function Home() {
     initScene();
 
     const handleResize = () => {
-      if (renderer && camera) {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      if (renderer && camera && (width !== renderer.domElement.width || height !== renderer.domElement.height)) {
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
         camera.updateProjectionMatrix();
       }
     };
-    let resizeTimeout;
-    const throttledResize = () => {
-      if (resizeTimeout) clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(handleResize, 150);
-    };
-    window.addEventListener("resize", throttledResize);
+
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", throttledResize);
+      window.removeEventListener("resize", handleResize);
       if (backgroundRef.current && renderer) {
         backgroundRef.current.removeChild(renderer.domElement);
       }
@@ -91,11 +88,6 @@ export default function Home() {
       <div className="container mx-auto px-8 z-10">
         {/* Hero Section */}
         <div className="flex flex-col text-center">
-          {/* Lottie Animation */}
-          <div className="relative flex items-center justify-center animate-custom-pulse md:hidden">
-            <Lottie animationData={animationData} loop={true} autoplay={true} />
-          </div>
-
           <motion.h1
             className="text-3xl md:text-7xl font-bold mb-6"
             initial={{ opacity: 0, y: -20 }}

@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -8,20 +7,16 @@ import EncButton from "./components/common/EncryptButton";
 import Lottie from "lottie-react";
 import animationData from './animations/animation.json';
 
-
 export default function Home() {
   const backgroundRef = useRef(null);
 
   useEffect(() => {
-    // Check if the device can handle the 3D scene (avoid heavy rendering on mobile)
     const isMobile = window.innerWidth <= 768;
     if (isMobile) return;
 
-    // Lazy-load the scene setup
     let renderer, scene, camera, particles;
 
     const initScene = () => {
-      // Scene setup
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(
         75,
@@ -35,7 +30,6 @@ export default function Home() {
       renderer.setSize(window.innerWidth, window.innerHeight);
       backgroundRef.current.appendChild(renderer.domElement);
 
-      // Particles setup with reduced particle count
       const particlesGeometry = new THREE.BufferGeometry();
       const particlesCount = 2000;
       const posArray = new Float32Array(particlesCount * 3);
@@ -57,7 +51,6 @@ export default function Home() {
       particles = new THREE.Points(particlesGeometry, particlesMaterial);
       scene.add(particles);
 
-      // Animation loop
       const animate = () => {
         requestAnimationFrame(animate);
         particles.rotation.y += 0.001;
@@ -68,7 +61,6 @@ export default function Home() {
 
     initScene();
 
-    // Throttling resize handling
     const handleResize = () => {
       if (renderer && camera) {
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -83,7 +75,6 @@ export default function Home() {
     };
     window.addEventListener("resize", throttledResize);
 
-    // Clean up on unmount
     return () => {
       window.removeEventListener("resize", throttledResize);
       if (backgroundRef.current && renderer) {
@@ -100,11 +91,9 @@ export default function Home() {
       <div className="container mx-auto px-8 z-10">
         {/* Hero Section */}
         <div className="flex flex-col text-center">
-        <div className="md:hidden relative flex items-center justify-center animate-custom-pulse">
-           
-           
-
-        <Lottie animationData={animationData} loop={true} autoplay={true} />
+          {/* Lottie Animation */}
+          <div className="relative flex items-center justify-center animate-custom-pulse md:hidden">
+            <Lottie animationData={animationData} loop={true} autoplay={true} />
           </div>
 
           <motion.h1
@@ -122,9 +111,11 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            &quot;As a full-stack developer, I blend creativity with technical expertise to craft polished, high-performing applications. I&apos;m eager to collaborate and transform innovative ideas into exceptional digital solutions.&quot;
+            &quot;As a full-stack developer, I blend creativity with technical
+            expertise to craft polished, high-performing applications. I&apos;m
+            eager to collaborate and transform innovative ideas into exceptional
+            digital solutions.&quot;
           </motion.p>
-
 
           {/* Call to Action Buttons */}
           <motion.div
@@ -151,7 +142,7 @@ export default function Home() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d="M9 12h12m0 0l-4 4m4-4l-4-4" // This line points right
+                    d="M9 12h12m0 0l-4 4m4-4l-4-4"
                   />
                 </svg>
               </motion.div>
@@ -162,15 +153,13 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full font-semibold"
-                transition={{ type: "spring", stiffness: "100" }}
+                transition={{ type: "spring", stiffness: 100 }}
               >
                 About Me
               </motion.button>
             </Link>
           </motion.div>
         </div>
-
-        {/* Scrolling Arrow Right */}
       </div>
     </section>
   );

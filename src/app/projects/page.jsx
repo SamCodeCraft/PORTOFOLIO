@@ -1,38 +1,18 @@
-// Add the "use client" directive at the top of the file
 'use client';
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import Projects from './projectsClient';
 
-  // export const metadata = {
-  //   title: "Samuel Siyajari - Projects",
-  //   description: "Explore my portfolio of projects, showcasing my skills in full-stack development",
-  //   keywords: "projects, portfolio, full-stack development, web applications, React, Flask, Django, Next.js, Express.js, PostgreSQL",
-  //   author: "Samuel Siyajari",
-  //   url: "https://yourwebsite.com/projects",
-  // };
+export const metadata = {
+  title: "Samuel Siyajari - Projects",
+  description: "Explore my portfolio of projects, showcasing my skills in full-stack development",
+  keywords: "projects, portfolio, full-stack development, web applications, React, Flask, Django, Next.js, Express.js, PostgreSQL",
+  author: "Samuel Siyajari",
+  url: "https://yourwebsite.com/projects", // Or the actual URL path.  Important for SEO!
+};
 
 const Page = () => {
-  useEffect(() => {
-    const handleScroll = () => {
-      console.log('User is scrolling on the Projects page');
-    };
-
-    // Add the event listener
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      // Cleanup: Remove the event listener
-      window.removeEventListener('scroll', handleScroll);
-      console.log('Scroll listener removed from Projects page');
-    };
-  }, []); // Empty dependency array ensures this runs once on mount/unmount
-
-  return (
-    <div className='pt-2'>
-      <Projects />
-    </div>
-  );
+  return <Projects />; // Directly render the Projects component
 };
 
 export default Page;
+

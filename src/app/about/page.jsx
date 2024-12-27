@@ -1,25 +1,23 @@
-import React from 'react'
-import About from './aboutClient';
+import React from 'react';
+import Contact from './contact-Client';
 
 
+// Metadata for the page 
 export const metadata = {
-  title: "About Samuel Siyajari | Portfolio",
-  description: "Learn more about Samuel Siyajari, a passionate Full Stack Software Developer. Discover my skills, experience, and journey in the world of web development.",
-  keywords: "about, portfolio, full stack developer, software engineer, web development, skills, experience, Brian Omondi",
+  title: "Contact Samuel Siyajari | Portfolio",
+  description: "Get in touch with Samuel Siyajari, a Full Stack Software Developer. Whether you have questions or collaboration opportunities, I would love to hear from you.",
+  keywords: "contact, portfolio, full stack developer, software engineer, web development, projects, skills, Samuel Siyajari",
   author: "Samuel Siyajari",
- 
 };
 
-
-const page = () => {
-
-  
+// Main component for the page
+const Page = () => {
   return (
-    <div className='pt-2'>
-      <About/>
-      
+    <div className="flex min-h-screen items-center justify-center">
+      <Contact />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
+

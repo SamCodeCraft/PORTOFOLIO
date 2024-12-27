@@ -8,15 +8,12 @@ export const metadata = {
   keywords:
     "learning, video collection, web development, frontend, backend, React, Django, Flask, Node.js, development resources, programming tutorials",
   author: "Samuel Siyajari",
-  url: "https://yourwebsite.com/learning",
+  url: "https://yourwebsite.com/learning", // Or the actual URL path if different
 };
 
 const page = () => {
-  return (
-    <div className="pt-2">
-      <LearningClient />
-    </div>
-  );
+  return <LearningClient />; // Directly render the LearningClient component
 };
 
 export default page;
+

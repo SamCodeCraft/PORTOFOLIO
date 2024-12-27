@@ -13,6 +13,8 @@ import {
 } from 'react-icons/si';
 import { FaServer } from 'react-icons/fa';
 
+// Sample skills data
+
 const skills = [
   {
     name: 'JavaScript',
@@ -70,6 +72,7 @@ const skills = [
   },
 ];
 
+// Skill Button Component with Framer Motion
 const SkillButton = ({ skill }) => (
   <motion.button
     className={`

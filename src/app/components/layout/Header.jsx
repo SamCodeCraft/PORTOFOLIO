@@ -1,47 +1,10 @@
 'use client';
+import Link from "next/link"; // Import Link from Next.js
+import { motion } from "framer-motion";
 
-import React from "react";
 
-// Named export for InteractiveComponent
-export function InteractiveComponent() {
-    return (
-        <button onClick={() => alert('Button clicked!')}>
-            Click me
-        </button>
-    );
-}
-
-// Custom icons using SVG paths
-const HomeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-  </svg>
-);
-
-const UserIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-  </svg>
-);
-
-const FolderIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-  </svg>
-);
-
-const EnvelopeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-  </svg>
-);
-
-const CodeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-  </svg>
-);
+// Custom icons using SVG paths (no changes needed)
+// ... (HomeIcon, UserIcon, FolderIcon, EnvelopeIcon, CodeIcon)
 
 const navItems = [
   { label: "Home", href: "/", icon: <HomeIcon /> },
@@ -52,36 +15,49 @@ const navItems = [
   { label: "Learning", href: "/learning", icon: <CodeIcon /> },
 ];
 
-// Default export for HorizontalNavbar
 export default function HorizontalNavbar() {
-  const handleNavigation = (href) => {
-    // Simple client-side navigation
-    window.location.href = href;
-  };
-
   return (
-    <header className="w-full bg-gray-900 shadow-lg">
-      <div className="container mx-auto px-4 py-4">
-        <nav className="flex justify-center items-center space-x-4">
-          {navItems.map((item, index) => (
-            <button 
-              key={index} 
-              onClick={() => handleNavigation(item.href)}
-              className="flex items-center justify-center 
-                         bg-blue-500 text-white 
-                         px-4 py-2 rounded-lg 
-                         hover:bg-blue-400 
-                         transition duration-300 
-                         ease-in-out 
-                         transform hover:scale-105 
-                         min-w-[120px]"
-            >
-              <span className="mr-2">{item.icon}</span>
-              {item.label}
-            </button>
-          ))}
-        </nav>
+    <header className="sticky top-0 z-50 w-full bg-gray-900/70 backdrop-blur-md shadow-lg"> {/* Added sticky positioning, blur, and transparency */}
+      <div className="container mx-auto px-4 py-2 md:py-4 flex items-center justify-between"> {/* Added container, adjusted padding, and flex properties */}
+        <div className="flex items-center gap-1 md:gap-3"> {/* Added flex and gap */}
+        <motion.div
+            whileHover={{ rotate: 360, scale: 1.2 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        >
+
+        <div className="text-white font-bold text-xl">LOGO</div> {/* Temporary Logo */}
+
+        </motion.div>
+
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center space-x-6 md:space-x-10"> {/* Navigation hidden on mobile, spaced on desktop */}
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href} passHref legacyBehavior> {/* Use next/link for routing */}
+                <motion.a
+                 whileHover={{ scale: 1.1 }}
+                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
+
+                  className="text-gray-300 hover:text-white transition duration-300 relative group"
+                >
+                   <span className="text-white absolute left-0 -bottom-[0.35rem] h-[2px] w-0 bg-indigo-500 transition-all duration-300 group-hover:w-full"></span>
+
+                  {/* Optional Icon: */}
+                  <span className="mr-1 hidden md:inline">{item.icon}</span> {/* Icon only shows on larger screens */}
+                  {item.label}
+                </motion.a>
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Mobile Menu Button (example, replace with your menu logic) */}
+        <button className="md:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
       </div>
     </header>
   );
 }
+

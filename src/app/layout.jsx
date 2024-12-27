@@ -1,13 +1,16 @@
 "use client";
+
+"use client";
+
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types'; // Import PropTypes for validation
+import PropTypes from 'prop-types';
 import StoreProvider from './StoreProvider';
 import LenisWrapper from './components/layout/lennisWrapper';
 import './globals.css';
 import Navbar from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import { Player } from 'lottie-react';
-import animationData from './animations/animation.json'; // Make sure this path is correct
+import Lottie from 'lottie-react'; // Correct import
+import animationData from './animations/animation.json';
 
 const Layout = ({ children }) => {
   useEffect(() => {
@@ -28,22 +31,22 @@ const Layout = ({ children }) => {
     <div className="relative min-h-screen">
       {/* Lottie Animation */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
-        <Player
+        <Lottie  // Use Lottie component here
           autoplay
           loop
-          src={animationData} // Add your Lottie animation file here
+          animationData={animationData} // Use animationData prop
           style={{
             width: "100%",
             height: "100%",
             position: "absolute",
             top: 0,
             left: 0,
-            zIndex: -1, // Ensure the animation is behind other content
+            zIndex: -1,
           }}
         />
       </div>
 
-      {children} {/* Render the children here */}
+      {children}
     </div>
   );
 };

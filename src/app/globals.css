@@ -3,7 +3,7 @@
   src: url('/fonts/GeistVF.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  font-display: swap; /* Improve performance and accessibility */
+  font-display: swap;
 }
 
 @font-face {
@@ -11,44 +11,112 @@
   src: url('/fonts/GeistMonoVF.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  font-display: swap; /* Improve performance and accessibility */
+  font-display: swap;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Improved reduced motion handling */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .animate-pulse,
-  .animate-custom-pulse {
-    animation: none !important;
-  }
-}
-
-/* Improved body and html styles */
+/* Base styles for vertical centering */
 html, 
 body {
   overflow-x: hidden;
-  scroll-behavior: smooth; /* Optional: adds smooth scrolling */
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-/* More robust and flexible custom pulse animation */
+/* Center content vertically using CSS Grid */
+body {
+  display: grid;
+  place-items: center;
+}
+
+/* Improved animations and transitions */
+@layer utilities {
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes custom-pulse {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
     opacity: 0.6;
+    transform: scale(1.02);
   }
 }
 
 .animate-custom-pulse {
   animation: custom-pulse 4.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Accessibility: Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-pulse,
+  .animate-custom-pulse,
+  .fade-in,
+  .slide-up,
+  .scale-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

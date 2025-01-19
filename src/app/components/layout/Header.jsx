@@ -1,10 +1,8 @@
 'use client';
-import Link from "next/link"; // Import Link from Next.js
+
+import Link from "next/link";
 import { motion } from "framer-motion";
-
-
-// Custom icons using SVG paths (no changes needed)
-// ... (HomeIcon, UserIcon, FolderIcon, EnvelopeIcon, CodeIcon)
+import { Home as HomeIcon, User as UserIcon, Folder as FolderIcon, Envelope as EnvelopeIcon, Code as CodeIcon } from 'react-icons/md'; // Updated icon imports
 
 const navItems = [
   { label: "Home", href: "/", icon: <HomeIcon /> },
@@ -15,51 +13,67 @@ const navItems = [
   { label: "Learning", href: "/learning", icon: <CodeIcon /> },
 ];
 
+const NavLink = ({ href, icon, label }) => (
+  <Link href={href}>
+    <motion.div
+      whileHover={{ y: -2, scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      className="flex flex-col items-center group"
+    >
+      <div className="p-2 rounded-lg bg-gray-800 group-hover:bg-indigo-600 transition-colors duration-300">
+        <span className="text-gray-300 group-hover:text-white text-xl">
+          {icon}
+        </span>
+      </div>
+      <span className="mt-1 text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-300">
+        {label}
+      </span>
+    </motion.div>
+  </Link>
+);
+
 export default function HorizontalNavbar() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-gray-900/70 backdrop-blur-md shadow-lg">
-      <div className="container mx-auto px-4 py-2 md:py-4 flex items-center justify-between">
-        <div className="flex items-center gap-1 md:gap-3">
+    <header className="sticky top-0 z-50 w-full bg-gray-900/90 backdrop-blur-md border-b border-gray-800">
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
           <motion.div 
             whileHover={{ rotate: 360, scale: 1.2 }} 
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className="bg-gradient-to-r from-indigo-500 to-purple-500 p-2 rounded-lg"
           >
             <div className="text-white font-bold text-xl">LOGO</div>
           </motion.div>
-        </div>
 
-        {/* Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-6 md:space-x-10">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href}>
-              <motion.a
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="text-gray-300 hover:text-white transition duration-300 relative group"
-              >
-                <span className="mr-1 hidden md:inline">{item.icon}</span>
-                {item.label}
-              </motion.a>
-            </Link>
-          ))}
-        </nav>
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-start space-x-8">
+            {navItems.map((item) => (
+              <NavLink key={item.href} {...item} />
+            ))}
+          </nav>
 
-        <button className="md:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+          {/* Mobile Menu Button */}
+          <motion.button 
+            className="md:hidden p-2 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors duration-300"
+            whileTap={{ scale: 0.95 }}
           >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M4 6h16M4 12h16m-7 6h7" 
-            />
-          </svg>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M4 6h16M4 12h16m-7 6h7" 
+              />
+            </svg>
+          </motion.button>
+        </div>
       </div>
     </header>
   );

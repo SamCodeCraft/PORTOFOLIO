@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StoreProvider from './StoreProvider';
@@ -11,6 +9,7 @@ import Navbar from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Lottie from 'lottie-react'; // Correct import
 import animationData from './animations/animation.json';
+
 
 const Layout = ({ children }) => {
   useEffect(() => {

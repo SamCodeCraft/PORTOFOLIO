@@ -1,5 +1,5 @@
 import React from 'react';
-import Contact from './contact-Client';
+import Contact from './contactClient';
 
 export const metadata = {
   title: "Contact Samuel Siyajari | Portfolio",

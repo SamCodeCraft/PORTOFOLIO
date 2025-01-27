@@ -39,9 +39,20 @@ This portfolio site is built using the following technologies:
 
 Check out some of my featured projects:
 
-1. **PesaBank**: A full-stack bank application built with React and Flask. It includes user authentication, account management, and transaction features.
-2. **MyDuka**: A store inventory app using React and Flask for managing products, orders, and reports.
-3. **Sportbike Website**: A personal website for showcasing superbike models, designed with React.
+1. **PesaBank**  
+   A full-stack bank application built with React and Flask. It includes user authentication, account management, and transaction features.  
+   **Tags**: Full-stack, Backend, React, Flask  
+   [View on GitHub](https://github.com/SamCodeCraft/PesaBank)
+
+2. **MyDuka**  
+   A store inventory app using React and Flask for managing products, orders, and reports.  
+   **Tags**: Full-stack, Backend, React, Flask  
+   [View on GitHub](https://github.com/SamCodeCraft/MyDuka)
+
+3. **Sportbike Website**  
+   A personal website for showcasing superbike models, designed with React.  
+   **Tags**: Frontend, React  
+   [View on GitHub](https://github.com/SamCodeCraft/SportbikeWebsite)
 
 For more projects, visit my GitHub: [GitHub](https://github.com/SamCodeCraft)
 

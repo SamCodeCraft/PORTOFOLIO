@@ -14,7 +14,6 @@ import {
 import { FaServer } from 'react-icons/fa';
 
 // Sample skills data
-
 const skills = [
   {
     name: 'JavaScript',
@@ -85,6 +84,9 @@ const SkillButton = ({ skill }) => (
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
     transition={{ type: 'spring', stiffness: 400 }}
+    whileInView={{ opacity: 1, y: 0 }}  // Scroll-triggered effect
+    initial={{ opacity: 0, y: 20 }} // Initial state when out of view
+    viewport={{ once: true }} // Trigger animation only once
   >
     {/* Gradient background with animation */}
     <div className={`

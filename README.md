@@ -7,6 +7,7 @@ Welcome to the personal portfolio of **Samuel Siyajari**. This website showcases
 - [About Me](#about-me)
 - [Technologies](#technologies)
 - [Projects](#projects)
+- [GitHub Contribution Graph](#github-contribution-graph)
 - [Contact](#contact)
 - [License](#license)
 
@@ -55,6 +56,14 @@ Check out some of my featured projects:
    [View on GitHub](https://github.com/SamCodeCraft/SportbikeWebsite)
 
 For more projects, visit my GitHub: [GitHub](https://github.com/SamCodeCraft)
+
+## GitHub Contribution Graph
+
+Here is my GitHub contribution graph, showing my activity in open-source contributions:
+
+![GitHub Contribution Graph](https://ghchart.rshah.org/SamCodeCraft)
+
+This graph showcases my active involvement in the developer community through contributions and open-source projects. You can check my recent contributions and stay updated with my latest work!
 
 ## Contact
 

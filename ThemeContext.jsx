@@ -1,7 +1,7 @@
 // src/context/ThemeContext.js
 import React, { createContext, useState, useEffect } from "react";
 
-// Create a context to manage theme
+// Create a context to manage the theme
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
@@ -18,7 +18,10 @@ export const ThemeProvider = ({ children }) => {
 
   // Apply the theme class to the body element
   useEffect(() => {
-    document.body.className = theme;
+    // Clear existing theme classes (dark or light)
+    document.body.classList.remove("dark", "light");
+    // Add the new theme class to the body
+    document.body.classList.add(theme);
   }, [theme]);
 
   return (

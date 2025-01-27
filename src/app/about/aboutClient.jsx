@@ -84,9 +84,6 @@ const SkillButton = ({ skill }) => (
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
     transition={{ type: 'spring', stiffness: 400 }}
-    whileInView={{ opacity: 1, y: 0 }}  // Scroll-triggered effect
-    initial={{ opacity: 0, y: 20 }} // Initial state when out of view
-    viewport={{ once: true }} // Trigger animation only once
   >
     {/* Gradient background with animation */}
     <div className={`
@@ -127,23 +124,23 @@ export default function About() {
   return (
     <section className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-900 to-black text-white py-20">
       <div className="container mx-auto px-4 md:px-8">
-        {/* Header */}
+        {/* Header with slide-in effect */}
         <motion.h1
           className="text-4xl md:text-6xl font-bold text-center mb-16 tracking-tight 
                      text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 
                      drop-shadow-[0_4px_3px_rgba(255,255,255,0.1)]"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
           About Me
         </motion.h1>
 
-        {/* Bio Section */}
+        {/* Bio Section with slide-in effect */}
         <motion.div
           className="md:flex md:space-x-12 bg-gray-800/30 rounded-2xl p-8 md:p-12 
                      shadow-2xl backdrop-blur-sm border border-white/5"
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -168,7 +165,7 @@ export default function About() {
             </p>
           </div>
 
-          {/* Profile Image with Glow Effect */}
+          {/* Profile Image with scale effect */}
           <div className="md:w-1/2 flex justify-center md:justify-end">
             <motion.div
               className="relative"
@@ -187,11 +184,11 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* Skills Section */}
+        {/* Skills Section with slide-in effect */}
         <motion.div
           className="mt-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl font-semibold text-center mb-12 

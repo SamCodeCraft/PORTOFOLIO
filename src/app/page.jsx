@@ -1,5 +1,3 @@
-// Home.jsx
-
 'use client';
 
 import React, { useEffect, useRef } from "react";
@@ -8,10 +6,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import EncButton from "./components/common/EncryptButton";
 import Head from 'next/head';
-import { useTheme } from './context/ThemeContext'; // Import theme context
+import { useTheme } from './ThemeContext'; // Import theme context
 
 export default function Home() {
-  const { isDarkMode, toggleTheme } = useTheme(); // Use the theme context
+  const { theme, toggleTheme } = useTheme(); // Use the theme context
   const backgroundRef = useRef(null);
 
   useEffect(() => {
@@ -82,7 +80,7 @@ export default function Home() {
         {/* Add other meta tags as you already did */}
       </Head>
 
-      <section className={`relative min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-white'} text-white flex items-center py-16 md:py-0`}>
+      <section className={`relative min-h-screen ${theme === "dark" ? 'bg-gray-900' : 'bg-white'} ${theme === "dark" ? 'text-white' : 'text-black'} flex items-center py-16 md:py-0`}>
         {/* 3D Background */}
         <div ref={backgroundRef} className="absolute inset-0 z-0" />
 
@@ -91,9 +89,11 @@ export default function Home() {
             {/* Toggle Button */}
             <button 
               onClick={toggleTheme} 
-              className="absolute top-5 right-5 p-2 bg-gray-800 text-white rounded-full"
+              className={`absolute top-5 right-5 p-2 rounded-full ${
+                theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
+              }`}
             >
-              {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              {theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
             </button>
             
             {/* Hero Section */}

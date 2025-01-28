@@ -1,8 +1,16 @@
-// src/context/ThemeContext.js
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 // Create a context to manage the theme
 export const ThemeContext = createContext();
+
+// Custom hook to use the ThemeContext
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+};
 
 export const ThemeProvider = ({ children }) => {
   // Get the saved theme from localStorage or default to dark

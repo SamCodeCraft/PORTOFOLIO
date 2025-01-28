@@ -9,7 +9,7 @@ import Navbar from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Lottie from 'lottie-react'; // Correct import
 import animationData from './animations/animation.json';
-
+import { ThemeProvider } from './ThemeContext'; // Import ThemeProvider
 
 const Layout = ({ children }) => {
   useEffect(() => {
@@ -91,15 +91,16 @@ function RootLayout({ children }) {
           ))}
         </head>
         <body className="antialiased">
-          <LenisWrapper>
-            <Navbar /> {/* The font will be applied to elements within Navbar */}
+          <ThemeProvider> {/* Wrap your entire app in ThemeProvider */}
+            <LenisWrapper>
+              <Navbar /> {/* The font will be applied to elements within Navbar */}
 
-            {/* Main Layout Component */}
-            <Layout>{children}</Layout>
+              {/* Main Layout Component */}
+              <Layout>{children}</Layout>
 
-          </LenisWrapper>
-
-          <Footer /> {/* Also applied here */}
+            </LenisWrapper>
+            <Footer /> {/* Also applied here */}
+          </ThemeProvider>
         </body>
       </html>
     </StoreProvider>

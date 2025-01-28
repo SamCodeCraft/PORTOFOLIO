@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home as HomeIcon, User as UserIcon, Folder as FolderIcon, Envelope as EnvelopeIcon, Code as CodeIcon } from 'react-icons/md'; // Updated icon imports
+import { MdHome, MdPerson, MdFolder, MdEmail, MdCode } from 'react-icons/md';
 
 const navItems = [
-  { label: "Home", href: "/", icon: <HomeIcon /> },
-  { label: "About", href: "/about", icon: <UserIcon /> },
-  { label: "Projects", href: "/projects", icon: <FolderIcon /> },
-  { label: "Contact", href: "/contact", icon: <EnvelopeIcon /> },
-  { label: "Interests", href: "/interests", icon: <FolderIcon /> },
-  { label: "Learning", href: "/learning", icon: <CodeIcon /> },
+  { label: "Home", href: "/", icon: <MdHome /> },
+  { label: "About", href: "/about", icon: <MdPerson /> },
+  { label: "Projects", href: "/projects", icon: <MdFolder /> },
+  { label: "Contact", href: "/contact", icon: <MdEmail /> },
+  { label: "Interests", href: "/interests", icon: <MdFolder /> },
+  { label: "Learning", href: "/learning", icon: <MdCode /> },
 ];
 
 const NavLink = ({ href, icon, label }) => (

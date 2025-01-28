@@ -13,9 +13,20 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  // Get the saved theme from localStorage or default to dark
-  const savedTheme = localStorage.getItem("theme") || "dark";
-  const [theme, setTheme] = useState(savedTheme);
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    // Only run on the client side after the component mounts
+    if (typeof window !== "undefined") {
+      // Get the saved theme from localStorage or default to dark
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      setTheme(savedTheme);
+
+      // Apply the theme class to the body element
+      document.body.classList.remove("dark", "light");
+      document.body.classList.add(savedTheme);
+    }
+  }, []);
 
   // Toggle the theme between dark and light
   const toggleTheme = () => {
@@ -23,14 +34,6 @@ export const ThemeProvider = ({ children }) => {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme); // Save the theme to localStorage
   };
-
-  // Apply the theme class to the body element
-  useEffect(() => {
-    // Clear existing theme classes (dark or light)
-    document.body.classList.remove("dark", "light");
-    // Add the new theme class to the body
-    document.body.classList.add(theme);
-  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

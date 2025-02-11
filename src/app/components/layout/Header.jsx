@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { MdHome, MdPerson, MdFolder, MdEmail, MdCode } from 'react-icons/md';
 
+// Navigation items
 const navItems = [
   { label: "Home", href: "/", icon: <MdHome /> },
   { label: "About", href: "/about", icon: <MdPerson /> },
@@ -13,12 +14,13 @@ const navItems = [
   { label: "Learning", href: "/learning", icon: <MdCode /> },
 ];
 
+// NavLink Component
 const NavLink = ({ href, icon, label }) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <motion.div
       whileHover={{ y: -2, scale: 1.05 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      className="flex flex-col items-center group"
+      className="flex flex-col items-center group cursor-pointer"
     >
       <div className="p-2 rounded-lg bg-gray-800 group-hover:bg-indigo-600 transition-colors duration-300">
         <span className="text-gray-300 group-hover:text-white text-xl">
@@ -32,29 +34,21 @@ const NavLink = ({ href, icon, label }) => (
   </Link>
 );
 
+// HorizontalNavbar Component
 export default function HorizontalNavbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-gray-900/90 backdrop-blur-md border-b border-gray-800">
       <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <motion.div 
-            whileHover={{ rotate: 360, scale: 1.2 }} 
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            className="bg-gradient-to-r from-indigo-500 to-purple-500 p-2 rounded-lg"
-          >
-            <div className="text-white font-bold text-xl">LOGO</div>
-          </motion.div>
-
+        <div className="flex items-center justify-end"> {/* Align items to the right */}
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-start space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <NavLink key={item.href} {...item} />
             ))}
           </nav>
 
           {/* Mobile Menu Button */}
-          <motion.button 
+          <motion.button
             className="md:hidden p-2 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors duration-300"
             whileTap={{ scale: 0.95 }}
           >
@@ -65,11 +59,11 @@ export default function HorizontalNavbar() {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M4 6h16M4 12h16m-7 6h7" 
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
               />
             </svg>
           </motion.button>

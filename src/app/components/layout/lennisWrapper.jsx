@@ -1,8 +1,7 @@
 "use client"; 
 import React from "react";
 import PropTypes from "prop-types"; // Import PropTypes
-import { ReactLenis } from "@studio-freight/react-lenis";
-
+import { ReactLenis } from "lenis/react";
 export default function LenisWrapper({ children }) {
 
   return (

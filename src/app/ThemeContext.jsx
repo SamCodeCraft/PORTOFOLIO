@@ -15,24 +15,26 @@ export const useTheme = () => {
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("dark");
 
+  // Sync theme with localStorage and body class
   useEffect(() => {
-    // Only run on the client side after the component mounts
     if (typeof window !== "undefined") {
-      // Get the saved theme from localStorage or default to dark
+      // Get the saved theme from localStorage or default to dark (only on mount)
       const savedTheme = localStorage.getItem("theme") || "dark";
       setTheme(savedTheme);
-
-      // Apply the theme class to the body element
-      document.body.classList.remove("dark", "light");
-      document.body.classList.add(savedTheme);
     }
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.body.classList.remove("dark", "light");
+      document.body.classList.add(theme);
+      localStorage.setItem("theme", theme);
+    }
+  }, [theme]);
+
   // Toggle the theme between dark and light
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme); // Save the theme to localStorage
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   return (

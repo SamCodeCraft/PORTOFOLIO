@@ -1,20 +1,14 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+const createBundleAnalyzer = require('@next/bundle-analyzer');
+
+const withBundleAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ['example.com'], // Adjust as per your use case
   },
-  webpack(config, { isServer }) {
-    if (!isServer) {
-      config.node = {
-        __dirname: true,
-        __filename: true,
-      };
-    }
-
-    return config;
-  },
 };
+
+module.exports = withBundleAnalyzer(nextConfig);

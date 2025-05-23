@@ -18,23 +18,112 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base styles for vertical centering */
-html, 
+/* Base styles */
+html,
 body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  font-family: 'GeistSans', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-/* Center content vertically using CSS Grid */
-body {
-  display: grid;
-  place-items: center;
+/* Dark Mode Variables */
+:root {
+  --background-color: #ffffff;
+  --text-color: #1a202c;
+  --accent-color: #4a5568;
+  --hover-color: #2d3748;
 }
 
-/* Improved animations and transitions */
+.dark {
+  --background-color: #1a202c;
+  --text-color: #e2e8f0;
+  --accent-color: #718096;
+  --hover-color: #4a5568;
+}
+
+/* Navbar Styling */
+header {
+  font-family: 'GeistSans', sans-serif;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  z-index: 1000;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dark header {
+  background-color: rgba(26, 32, 44, 0.85);
+}
+
+/* Ensure navbar elements are properly aligned */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar a:hover {
+  color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* Center the header content */
+.main-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  padding: 5rem 2rem;
+}
+
+/* Buttons & Links */
+/* TIP: If you have many links/buttons, consider using a class instead of global selector for transform */
+button,
+a {
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+button:hover,
+a:hover {
+  /* Consider removing scale for all links/buttons if performance is an issue */
+  transform: scale(1.05);
+}
+
+.dark button,
+.dark a {
+  background-color: var(--hover-color);
+  color: var(--text-color);
+}
+
+.dark button:hover,
+.dark a:hover {
+  background-color: var(--accent-color);
+}
+
+/* Animations */
 @layer utilities {
   .fade-in {
     opacity: 0;
@@ -46,15 +135,8 @@ body {
     transform: translateY(20px);
     animation: slideUp 0.6s ease-out forwards;
   }
-
-  .scale-in {
-    opacity: 0;
-    transform: scale(0.95);
-    animation: scaleIn 0.5s ease-out forwards;
-  }
 }
 
-/* Animation keyframes */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -75,33 +157,7 @@ body {
   }
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes custom-pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.02);
-  }
-}
-
-.animate-custom-pulse {
-  animation: custom-pulse 4.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Accessibility: Respect user preferences for reduced motion */
+/* Accessibility: Reduce Motion */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -109,50 +165,19 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
 
-  .animate-pulse,
-  .animate-custom-pulse,
-  .fade-in,
-  .slide-up,
-  .scale-in {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 0.5rem;
   }
 }
-
-/* Dark Mode Styles */
-.dark {
-  --background-color: #1a202c; /* Dark background */
-  --text-color: #e2e8f0; /* Light text for dark mode */
-}
-
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-/* Specific component styling changes in dark mode */
-.dark .fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.dark .slide-up {
-  animation: slideUp 0.6s ease-out forwards;
-}
-
-/* Button and link styles */
-button, a {
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.dark button, .dark a {
-  background-color: #2d3748; /* Dark background for buttons/links */
-  color: #e2e8f0; /* Light text color for buttons/links */
-}
-
-.dark button:hover, .dark a:hover {
-  background-color: #4a5568; /* Darker shade for hover effect */
-}
-
-/* Add any other dark-specific styles below */

@@ -2,14 +2,17 @@
 
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import dynamic from 'next/dynamic';
 import StoreProvider from './StoreProvider';
 import LenisWrapper from './components/layout/lennisWrapper';
 import './globals.css';
 import Navbar from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import Lottie from 'lottie-react'; // Correct import
-import animationData from './animations/animation.json';
 import { ThemeProvider } from './ThemeContext'; // Import ThemeProvider
+
+// Dynamically import Lottie only on client side
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
+const animationDataPromise = import('./animations/animation.json');
 
 const Layout = ({ children }) => {
   useEffect(() => {
@@ -17,23 +20,33 @@ const Layout = ({ children }) => {
       console.log("Window resized!");
     };
 
-    window.addEventListener("resize", handleResize);
+    // Throttle resize handler
+    let throttleTimeout = null;
+    const throttledResize = () => {
+      if (throttleTimeout === null) {
+        throttleTimeout = setTimeout(() => {
+          handleResize();
+          throttleTimeout = null;
+        }, 200);
+      }
+    };
+
+    window.addEventListener("resize", throttledResize);
 
     return () => {
-      // Cleanup
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", throttledResize);
       console.log("Resize listener removed");
     };
   }, []);
 
   return (
     <div className="relative min-h-screen">
-      {/* Lottie Animation */}
+      {/* Lottie Animation (optional if needed across all pages) */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
-        <Lottie  // Use Lottie component here
+        <Lottie
           autoplay
           loop
-          animationData={animationData} // Use animationData prop
+          animationData={require('./animations/animation.json')} // Static import fallback
           style={{
             width: "100%",
             height: "100%",
@@ -50,9 +63,7 @@ const Layout = ({ children }) => {
   );
 };
 
-// The layout is responsible for rendering the overall structure
 function RootLayout({ children }) {
-  // Metadata moved to RootLayout
   const geistMonoLink = "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100;900&display=swap";
   const geistSansLink = "https://fonts.googleapis.com/css2?family=Geist+Sans:wght@100;900&display=swap";
 
@@ -64,7 +75,7 @@ function RootLayout({ children }) {
     openGraph: {
       title: "Samuel Siyajari | Portfolio",
       description: "Explore my projects and skills as a Full Stack Software Developer.",
-      url: "https://github.com/SamCodeCraft/PORTOFOLIO", // Replace with your actual URL
+      url: "https://github.com/SamCodeCraft/PORTOFOLIO",
       type: "website",
     },
     link: [
@@ -77,7 +88,6 @@ function RootLayout({ children }) {
     <StoreProvider>
       <html lang="en">
         <head>
-          {/* Metadata will be rendered here */}
           <title>{metadata.title}</title>
           <meta name="description" content={metadata.description} />
           <meta name="keywords" content={metadata.keywords} />
@@ -91,15 +101,12 @@ function RootLayout({ children }) {
           ))}
         </head>
         <body className="antialiased">
-          <ThemeProvider> {/* Wrap your entire app in ThemeProvider */}
+          <ThemeProvider>
             <LenisWrapper>
-              <Navbar /> {/* The font will be applied to elements within Navbar */}
-
-              {/* Main Layout Component */}
+              <Navbar />
               <Layout>{children}</Layout>
-
             </LenisWrapper>
-            <Footer /> {/* Also applied here */}
+            <Footer />
           </ThemeProvider>
         </body>
       </html>
@@ -107,9 +114,8 @@ function RootLayout({ children }) {
   );
 }
 
-// Adding PropTypes validation for 'children'
 RootLayout.propTypes = {
-  children: PropTypes.node.isRequired, // 'children' should be a React node
+  children: PropTypes.node.isRequired,
 };
 
 export default RootLayout;

@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 
@@ -20,7 +19,6 @@ export default function Home() {
       renderer = new THREE.WebGLRenderer({ alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       if (backgroundRef.current) {
-        // Clean up any previous renderer
         backgroundRef.current.innerHTML = "";
         backgroundRef.current.appendChild(renderer.domElement);
       }

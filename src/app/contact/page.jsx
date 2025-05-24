@@ -1,5 +1,4 @@
-import React from 'react';
-import Contact from './ContactClient'; // Your contact component
+import Contact from './ContactClient';
 
 // Metadata for the Contact Page
 export const metadata = {
@@ -14,7 +13,7 @@ export const metadata = {
     url: "https://your-portfolio-url-here.com/contact",
     images: [
       {
-        url: "https://your-image-url-here.jpg", // Update with your image URL
+        url: "https://your-image-url-here.jpg",
         alt: "Samuel Siyajari Portfolio",
       },
     ],
@@ -24,16 +23,16 @@ export const metadata = {
     card: "summary_large_image",
     title: "Contact Samuel Siyajari | Portfolio",
     description: "Get in touch with Samuel Siyajari, a Full Stack Software Developer. Whether you have questions or collaboration opportunities, I would love to hear from you.",
-    images: ["https://your-image-url-here.jpg"], // Update with your image URL
+    images: ["https://your-image-url-here.jpg"],
   },
 };
 
-const ContactPage = () => {
+export default function ContactPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated background gradient */}
+      <div className="absolute inset-0 -z-10 animate-gradient-move bg-gradient-to-br from-indigo-900 via-gray-900 to-black opacity-90" />
       <Contact />
-    </div>
+    </section>
   );
-};
-
-export default ContactPage;
+}

@@ -1,10 +1,10 @@
 'use client';
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { MdHome, MdPerson, MdFolder, MdEmail, MdCode } from 'react-icons/md';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MdHome, MdPerson, MdFolder, MdEmail, MdCode, MdMenu, MdClose } from 'react-icons/md';
 
-// Navigation items
 const navItems = [
   { label: "Home", href: "/", icon: <MdHome /> },
   { label: "About", href: "/about", icon: <MdPerson /> },
@@ -14,41 +14,77 @@ const navItems = [
   { label: "Learning", href: "/learning", icon: <MdCode /> },
 ];
 
-// NavLink Component
-const NavLink = ({ href, icon, label }) => (
-  <Link href={href} passHref>
-    <motion.div
-      whileHover={{ y: -2, scale: 1.05 }}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      className="flex flex-row items-center group cursor-pointer space-x-2"
+const NavLink = ({ href, icon, label, onClick }) => (
+  <Link href={href} passHref legacyBehavior>
+    <a
+  onClick={onClick}
+  className="nav-btn"
+      style={{ minWidth: 110, justifyContent: "center" }}
     >
-      <div className="p-2 rounded-lg bg-gray-800 group-hover:bg-indigo-600 transition-colors duration-300">
-        <span className="text-gray-300 group-hover:text-white text-xl">
-          {icon}
-        </span>
-      </div>
-      <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-300">
-        {label}
-      </span>
-    </motion.div>
+      <span className="text-lg">{icon}</span>
+      <span>{label}</span>
+    </a>
   </Link>
 );
 
-// HorizontalNavbar Component
-export default function HorizontalNavbar() {
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-gray-900/90 backdrop-blur-md border-b border-gray-800 flex items-center justify-between px-6 py-4">
-      
-      {/* Left Section - Logo or Title */}
-      <div className="text-white text-2xl font-bold">My Portfolio</div>
+    <header className="sticky top-0 z-50 w-full bg-gradient-to-r from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-lg border-b border-gray-800 shadow-lg">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+        {/* Logo */}
+        <Link href="/" className="flex items-center space-x-2 group">
+          <span className="text-2xl font-extrabold bg-gradient-to-r from-indigo-400 via-pink-400 to-yellow-400 bg-clip-text text-transparent animate-gradient">
+            Samuel Siyajari
+          </span>
+        </Link>
 
-      {/* Navbar Items (Evenly Spaced) */}
-      <nav className="flex items-center space-x-6">
-        {navItems.map((item) => (
-          <NavLink key={item.href} {...item} />
-        ))}
-      </nav>
+        {/* Desktop Nav - aligned right */}
+        <nav className="hidden md:flex items-center space-x-4 ml-auto">
+          {navItems.map((item) => (
+            <NavLink key={item.href} {...item} />
+          ))}
+        </nav>
 
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden text-3xl text-blue-400 hover:text-blue-500 transition"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label="Open menu"
+        >
+          {menuOpen ? <MdClose /> : <MdMenu />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden bg-gray-900/95 px-6 pb-4 flex flex-col space-y-3"
+          >
+            {navItems.map((item) => (
+              <NavLink key={item.href} {...item} onClick={() => setMenuOpen(false)} />
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
+
+      {/* Gradient animation (optional, for logo) */}
+      <style jsx>{`
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradientMove 4s ease-in-out infinite;
+        }
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
     </header>
   );
 }
